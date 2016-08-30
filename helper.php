@@ -24,7 +24,7 @@ abstract class mod_authorlatestarticlesHelper {
 		}
 		else if ($params->get('source') == '1') {
 			$query = $db->getQuery(true);
-			$query->select('c.id, c.catid, c.alias, c.title, c.published AS state, c.access, c.publish_up, c.trash, u.userName as author, cat.name as category');
+			$query->select('c.id, c.catid, c.alias, c.title, c.published AS state, c.access, c.publish_up, c.trash, u.userName as author, cat.name as category, cat.alias as categoryAlias');
 			$query->from('#__k2_items c');
 			$query->join('INNER', '#__k2_users as u ON (c.created_by = u.userID)');
 			$query->join('INNER', '#__k2_categories as cat ON (c.catid = cat.id)');
@@ -48,6 +48,7 @@ abstract class mod_authorlatestarticlesHelper {
 			$articles[$i]->access = (int)$article->access;
 			$articles[$i]->title = htmlspecialchars($article->title);
 			$articles[$i]->category = htmlspecialchars($article->category);
+			$articles[$i]->categoryAlias = htmlspecialchars($article->categoryAlias);
 			$articles[$i]->author = htmlspecialchars($article->author);
 			$articles[$i]->publish_up = $article->publish_up;
 			$articles[$i]->state = $article->state;
