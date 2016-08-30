@@ -31,8 +31,7 @@ defined('_JEXEC') or die;
 				<?php if ($params->get('source') == '0') { ?> 
 				<a href="<?php echo  JRoute::_(ContentHelperRoute::getArticleRoute(  $article->id,  $article->catid )); ?>"><?php echo $article->title; ?></a>
 				<?php } else if ($params->get('source') == '1') { ?>
-					<a href="<?php echo JRoute::_(K2HelperRoute::getItemRoute($article->id.':'. $article->alias , $article->catid)) ?>"><?php echo $article->title; ?></a>
-				<?php } ?>
+					<a href="<?php echo JRoute::_(K2HelperRoute::getItemRoute($article->id.':'. urlencode($article->alias) , $article->catid.':'.urlencode($article->categoryAlias))) ?>"><?php echo $article->title; ?></a>				<?php } ?>
 			</td>
 			<td><?php echo $article->category; ?></td>
 			<td><?php echo $article->author; ?></td>
